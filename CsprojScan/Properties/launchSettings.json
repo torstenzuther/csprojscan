@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CsprojScan": {
+      "commandName": "Project",
+      "commandLineArgs": ". sample.csv"
+    }
+  }
+}
