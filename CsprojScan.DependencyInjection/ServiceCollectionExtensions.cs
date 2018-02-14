@@ -1,5 +1,7 @@
 ﻿using CsprojScan.Contracts;
-using CsprojScan.Implementation;
+using CsprojScan.Implementation.Collect;
+using CsprojScan.Implementation.Exception;
+using CsprojScan.Implementation.Export;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 

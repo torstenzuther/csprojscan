@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CsprojScan.Implementation
+namespace CsprojScan.Implementation.Collect
 {
     public class ResultCollector : IResultCollector
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CsprojScan.Implementation
+namespace CsprojScan.Implementation.Export
 {
     public class CsvExporter : IExporter
     {
@@ -47,8 +47,10 @@ namespace CsprojScan.Implementation
                         columnIndexDict.Add(column, i++);
                     }
 
-                    var matrix = new List<string[]>();
-                    matrix.Add(allColumns.ToArray());
+                    var matrix = new List<string[]>
+                    {
+                        allColumns.ToArray()
+                    };
 
                     foreach (var extract in results)
                     {
@@ -68,7 +70,7 @@ namespace CsprojScan.Implementation
                 }
                 File.WriteAllText(settings.File, csv);
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 this.exceptionHandler.HandleException(e);
             }

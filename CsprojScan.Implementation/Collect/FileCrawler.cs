@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using CsprojScan.Contracts;
 
-namespace CsprojScan.Implementation
+namespace CsprojScan.Implementation.Collect
 {
     public class FileCrawler : IFileCrawler
     {

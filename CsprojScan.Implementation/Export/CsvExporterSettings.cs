@@ -1,4 +1,4 @@
-﻿namespace CsprojScan.Implementation
+﻿namespace CsprojScan.Implementation.Export
 {
     public class CsvExporterSettings
     {

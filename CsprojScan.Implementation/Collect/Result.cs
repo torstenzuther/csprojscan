@@ -1,7 +1,7 @@
 ﻿using CsprojScan.Contracts;
 using System.Collections.Generic;
 
-namespace CsprojScan.Implementation
+namespace CsprojScan.Implementation.Collect
 {
     public class Result : IResult
     {

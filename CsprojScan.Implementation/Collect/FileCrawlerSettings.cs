@@ -1,4 +1,4 @@
-namespace CsprojScan.Implementation
+namespace CsprojScan.Implementation.Collect
 {
     /// <summary>
     /// Contains settings for a file crawler
