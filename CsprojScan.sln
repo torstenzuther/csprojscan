@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsprojScan.Console", "CsprojScan\CsprojScan.Console.csproj", "{3FE10476-9568-4467-BDA8-1961F385A97D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsprojScan.Contracts", "CsprojScan.Contracts\CsprojScan.Contracts.csproj", "{B370A274-C26B-4617-8857-5767DE3B3D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsprojScan.Contracts", "CsprojScan.Contracts\CsprojScan.Contracts.csproj", "{B370A274-C26B-4617-8857-5767DE3B3D85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsprojScan.Implementation", "CsprojScan.Implementation\CsprojScan.Implementation.csproj", "{E1D758EC-9326-4288-A310-517EAC117107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsprojScan.Implementation", "CsprojScan.Implementation\CsprojScan.Implementation.csproj", "{E1D758EC-9326-4288-A310-517EAC117107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsprojScan.DependencyInjection", "CsprojScan.DependencyInjection\CsprojScan.DependencyInjection.csproj", "{84D6B79D-743E-4321-9949-1E4615F77CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsprojScan.DependencyInjection", "CsprojScan.DependencyInjection\CsprojScan.DependencyInjection.csproj", "{84D6B79D-743E-4321-9949-1E4615F77CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsprojScan.Console", "CsprojScan.Console\CsprojScan.Console.csproj", "{47B0AAE9-77CD-4C79-B2E9-218924C99059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3FE10476-9568-4467-BDA8-1961F385A97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FE10476-9568-4467-BDA8-1961F385A97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FE10476-9568-4467-BDA8-1961F385A97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FE10476-9568-4467-BDA8-1961F385A97D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B370A274-C26B-4617-8857-5767DE3B3D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B370A274-C26B-4617-8857-5767DE3B3D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B370A274-C26B-4617-8857-5767DE3B3D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{84D6B79D-743E-4321-9949-1E4615F77CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D6B79D-743E-4321-9949-1E4615F77CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D6B79D-743E-4321-9949-1E4615F77CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47B0AAE9-77CD-4C79-B2E9-218924C99059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B0AAE9-77CD-4C79-B2E9-218924C99059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B0AAE9-77CD-4C79-B2E9-218924C99059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B0AAE9-77CD-4C79-B2E9-218924C99059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
