@@ -2,7 +2,7 @@
   "profiles": {
     "CsprojScan": {
       "commandName": "Project",
-      "commandLineArgs": ". sample.csv"
+      "commandLineArgs": "C:\\Users\\tzuther\\Source\\Repos sample.csv"
     }
   }
 }

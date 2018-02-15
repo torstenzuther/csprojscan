@@ -1,7 +1,7 @@
 ﻿using CsprojScan.Contracts;
-using CsprojScan.Implementation.Model;
-using System.Xml;
-using System.Xml.Serialization;
+using Microsoft.Build.Construction;
+using System;
+using System.Collections.Generic;
 
 namespace CsprojScan.Implementation.Collect
 {
@@ -18,13 +18,19 @@ namespace CsprojScan.Implementation.Collect
         {
             try
             {
-                using (var xmlReader = XmlReader.Create(file))
+                var projectRoot = Microsoft.Build.Construction.ProjectRootElement.Open(file);
+                var rows = new List<KeyValuePair<string, string>>();
+                var result = new Result
                 {
-                    var serializer = new XmlSerializer(typeof(Project), new XmlRootAttribute("Project"));
-                    var deserialized = (Project)serializer.Deserialize(xmlReader);
+                    Name = file,
+                    Rows = rows
+                };
+                foreach (var child in projectRoot.AllChildren)
+                {
+                    var rowsToAdd = GetRows(child);
+                    rows.AddRange(rowsToAdd);
                 }
-                
-                return new Result();
+                return result;
             }
             catch (System.Exception e)
             {
@@ -36,6 +42,24 @@ namespace CsprojScan.Implementation.Collect
                     Name = file
                 };
             }
+        }
+
+        private IEnumerable<KeyValuePair<string, string>> GetRows(ProjectElement child)
+        {
+            var result = new List<KeyValuePair<string, string>>();
+            if (child is ProjectPropertyElement projectPropertyElement)
+            {
+                return GetRows(projectPropertyElement);
+            }
+            return result;
+        }
+
+        private IEnumerable<KeyValuePair<string, string>> GetRows(ProjectPropertyElement projectPropertyElement)
+        {
+            return new []
+            {
+                new KeyValuePair<string, string>(projectPropertyElement.Name, projectPropertyElement.Value)
+            };
         }
     }
 }
