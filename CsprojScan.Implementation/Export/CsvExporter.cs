@@ -33,7 +33,7 @@ namespace CsprojScan.Implementation.Export
                         .OrderBy(k => k));
 
                     var systemColumns =
-                        new[] { settings.NameColumn, settings.HasErrorsColumn, settings.ErrorMessageColumn };
+                        new[] { settings.NameColumn, settings.ErrorMessageColumn };
 
                     var allColumns =
                             systemColumns
@@ -57,7 +57,6 @@ namespace CsprojScan.Implementation.Export
                         var array = new string[allColumns.Count];
                         matrix.Add(array);
                         array[columnIndexDict[settings.NameColumn]] = extract.Name;
-                        array[columnIndexDict[settings.HasErrorsColumn]] = extract.HasErrors.ToString();
                         array[columnIndexDict[settings.ErrorMessageColumn]] = extract.ErrorMessage;
                         foreach (var row in extract.Rows)
                         {

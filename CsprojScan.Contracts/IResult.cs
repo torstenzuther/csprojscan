@@ -7,8 +7,6 @@ namespace CsprojScan.Contracts
 
         string Name { get; }
 
-        bool HasErrors { get; }
-
         string ErrorMessage { get; }
 
         IEnumerable<KeyValuePair<string, string>> Rows { get; }

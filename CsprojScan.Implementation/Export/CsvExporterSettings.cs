@@ -6,8 +6,6 @@
         
         public string NameColumn { get; set; }
 
-        public string HasErrorsColumn { get; set; }
-
         public string ErrorMessageColumn { get; set; }
 
         public string Newline { get; set; }

@@ -12,8 +12,6 @@ namespace CsprojScan.Implementation.Collect
 
         public string Name { get; set; }
 
-        public bool HasErrors { get; set; }
-
         public string ErrorMessage { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> Rows { get; set; }

@@ -1,7 +1,9 @@
 ﻿using CsprojScan.Contracts;
+using CsprojScan.Implementation.Extensions;
 using Microsoft.Build.Construction;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CsprojScan.Implementation.Collect
 {
@@ -18,18 +20,14 @@ namespace CsprojScan.Implementation.Collect
         {
             try
             {
-                var projectRoot = Microsoft.Build.Construction.ProjectRootElement.Open(file);
+                var projectRoot = ProjectRootElement.Open(file);
                 var rows = new List<KeyValuePair<string, string>>();
                 var result = new Result
                 {
                     Name = file,
                     Rows = rows
                 };
-                foreach (var child in projectRoot.AllChildren)
-                {
-                    var rowsToAdd = GetRows(child);
-                    rows.AddRange(rowsToAdd);
-                }
+                rows.AddRange(projectRoot.GetReferences());
                 return result;
             }
             catch (System.Exception e)
@@ -38,28 +36,11 @@ namespace CsprojScan.Implementation.Collect
                 return new Result
                 {
                     ErrorMessage = $"{e.Message}:{e.StackTrace}",
-                    HasErrors = true,
                     Name = file
                 };
             }
         }
 
-        private IEnumerable<KeyValuePair<string, string>> GetRows(ProjectElement child)
-        {
-            var result = new List<KeyValuePair<string, string>>();
-            if (child is ProjectPropertyElement projectPropertyElement)
-            {
-                return GetRows(projectPropertyElement);
-            }
-            return result;
-        }
-
-        private IEnumerable<KeyValuePair<string, string>> GetRows(ProjectPropertyElement projectPropertyElement)
-        {
-            return new []
-            {
-                new KeyValuePair<string, string>(projectPropertyElement.Name, projectPropertyElement.Value)
-            };
-        }
+        
     }
 }

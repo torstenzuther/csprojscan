@@ -19,7 +19,6 @@ namespace CsprojScan.DependencyInjection
                 .AddTransient(sp => new CsvExporterSettings {
                                     ColumnSeparator = ",",
                                     ErrorMessageColumn = "Error message",
-                                    HasErrorsColumn = "Errors (true/false)",
                                     NameColumn = "ID",
                                     File = exportFilename,
                                     Newline = Environment.NewLine
