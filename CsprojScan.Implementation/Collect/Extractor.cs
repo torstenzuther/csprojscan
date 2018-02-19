@@ -1,9 +1,7 @@
 ﻿using CsprojScan.Contracts;
 using CsprojScan.Implementation.Extensions;
 using Microsoft.Build.Construction;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CsprojScan.Implementation.Collect
 {
@@ -21,7 +19,7 @@ namespace CsprojScan.Implementation.Collect
             try
             {
                 var projectRoot = ProjectRootElement.Open(file);
-                var rows = new List<KeyValuePair<string, string>>();
+                var rows = new List<IResultRow>();
                 var result = new Result
                 {
                     Name = file,

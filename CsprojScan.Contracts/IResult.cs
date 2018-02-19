@@ -9,7 +9,7 @@ namespace CsprojScan.Contracts
 
         string ErrorMessage { get; }
 
-        IEnumerable<KeyValuePair<string, string>> Rows { get; }
+        IEnumerable<IResultRow> Rows { get; }
 
     }
 }

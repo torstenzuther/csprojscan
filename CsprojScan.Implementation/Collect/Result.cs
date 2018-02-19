@@ -7,13 +7,13 @@ namespace CsprojScan.Implementation.Collect
     {
         public Result()
         {
-            Rows = new List<KeyValuePair<string, string>>();
+            Rows = new List<IResultRow>();
         }
 
         public string Name { get; set; }
 
         public string ErrorMessage { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> Rows { get; set; }
+        public IEnumerable<IResultRow> Rows { get; set; }
     }
 }

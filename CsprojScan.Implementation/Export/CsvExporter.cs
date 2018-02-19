@@ -29,7 +29,8 @@ namespace CsprojScan.Implementation.Export
                     var columns = new HashSet<string>(results
                         .Where(r => r.Rows != null)
                         .SelectMany(e => e.Rows)
-                        .Select(r => r.Key)
+                        .SelectMany(r => r.KeyValuePairs)
+                        .Select(r => r.Item1)
                         .OrderBy(k => k));
 
                     var systemColumns =
@@ -42,7 +43,7 @@ namespace CsprojScan.Implementation.Export
 
                     var columnIndexDict = new Dictionary<string, int>();
                     var i = 0;
-                    foreach (var column in allColumns)
+                    foreach (var column in columns)
                     {
                         columnIndexDict.Add(column, i++);
                     }
@@ -54,13 +55,16 @@ namespace CsprojScan.Implementation.Export
 
                     foreach (var extract in results)
                     {
-                        var array = new string[allColumns.Count];
-                        matrix.Add(array);
-                        array[columnIndexDict[settings.NameColumn]] = extract.Name;
-                        array[columnIndexDict[settings.ErrorMessageColumn]] = extract.ErrorMessage;
                         foreach (var row in extract.Rows)
                         {
-                            array[columnIndexDict[row.Key]] = row.Value;
+                            var array = new string[allColumns.Count];
+                            matrix.Add(array);
+                            foreach (var kvp in row.KeyValuePairs)
+                            {
+                                array[columnIndexDict[kvp.Item1] + systemColumns.Length] = kvp.Item2;
+                                array[0] = extract.Name;
+                                array[1] = extract.ErrorMessage;
+                            }
                         }
                     }
 
