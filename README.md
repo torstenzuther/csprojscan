@@ -6,6 +6,7 @@ It exports the references to a CSV file to be visualized in an HTML pivot grid. 
 # Usage
 
 `CsprojScan.Console.exe <search-paths> <export-file> [<search-pattern>]`
+
 **<search-paths>** is the start search path. Multiple paths can be separated by ; (no whitespaces allowed)
 **<export-file>** is the file name to export to (will be overwritten)
 optional **<search-pattern>** (defaults to *.csproj)}
