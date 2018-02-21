@@ -20,10 +20,11 @@ namespace CsprojScan.DependencyInjection
         /// <param name="serviceCollection">the service collection to use</param>
         /// <param name="basePaths">all paths to look for csproj files</param>
         /// <param name="exportFilename">the file to export the results to</param>
+        /// <param name="exportPivotgrid">true, if html pivot grid should be created or false, otherwise</param>
         /// <param name="searchPattern">an optional search pattern for files (default is *.csproj)</param>
         /// <returns></returns>
         public static IServiceCollection UseCsprojScan(this IServiceCollection serviceCollection,
-            IEnumerable<string> basePaths, string exportFilename, string searchPattern = "*.csproj")
+            IEnumerable<string> basePaths, string exportFilename, bool exportPivotgrid = true, string searchPattern = "*.csproj")
         {
             return serviceCollection
                 .AddTransient<IExceptionHandler, ExceptionHandler>()
@@ -33,7 +34,8 @@ namespace CsprojScan.DependencyInjection
                                     ErrorMessageColumn = "Error message",
                                     NameColumn = "Csproj",
                                     File = exportFilename,
-                                    Newline = Environment.NewLine
+                                    Newline = Environment.NewLine,
+                                    ExportPivotGrid = exportPivotgrid
                             })
                 .AddTransient(sp => new FileCrawlerSettings {
                                     BasePaths = basePaths,

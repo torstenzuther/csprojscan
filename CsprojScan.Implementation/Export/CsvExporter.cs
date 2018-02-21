@@ -1,6 +1,7 @@
 ﻿using CsprojScan.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -84,12 +85,25 @@ namespace CsprojScan.Implementation.Export
                         matrix.Select(rows => String.Join(settings.ColumnSeparator, rows)));
                 }
                 File.WriteAllText(settings.File, csv);
+                if (settings.ExportPivotGrid)
+                    WritePivotGrid(settings.File);
             }
             catch (System.Exception e)
             {
                 this.exceptionHandler.HandleException(e);
             }
 
+        }
+
+        private void WritePivotGrid(string file)
+        {
+            var directory = Path.GetDirectoryName(Path.GetFullPath(file));
+            var filename = Path.GetFileName(file);
+            var pivotGridHtml = Pivotgrid.PivotgridHtml.Replace("$$$FILENAME$$$", filename);
+            var pivotGridFilename = $"{filename}{"_"}{DateTimeOffset.Now.UtcTicks}{".html"}";
+            var pivotGridFile = directory + Path.DirectorySeparatorChar + pivotGridFilename;
+            File.WriteAllText(pivotGridFile, pivotGridHtml);
+            Process.Start(Path.GetFullPath(pivotGridFile));
         }
     }
 }

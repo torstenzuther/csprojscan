@@ -12,4 +12,19 @@
     <ProjectReference Include="..\CsprojScan.Contracts\CsprojScan.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Export\Pivotgrid.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Pivotgrid.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Export\Pivotgrid.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pivotgrid.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

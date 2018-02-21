@@ -29,5 +29,11 @@
         /// the column separator
         /// </summary>
         public string ColumnSeparator { get; set; }
+
+        /// <summary>
+        /// Controls if pivotgrid should be also exported
+        /// </summary>
+        public bool ExportPivotGrid { get; set; }
+
     }
 }
