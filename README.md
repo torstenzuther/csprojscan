@@ -17,3 +17,4 @@ CsprojScan then scans all given search paths by using the given search pattern a
 It also generates a html file using the pivottable.js library from https://pivottable.js.org/ and opens it. 
 The pivot table html is configured to load the generated CSV file. The name of the pivot html is auto generated and follows the pattern **<CSV-filename>_<Ticks>.html**
 
+![Pivot table]:(csprojscan.png)
