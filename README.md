@@ -1,7 +1,7 @@
 # CsprojScan
 
 CsprojScan scans folders for csproj files and extracts all project references, package references and references (directly referenced DLLs).
-It exports the references to a CSV file to be visualized in an HTML pivot grid. It allows for simple analysis of all references / nuget packages over different solutions which is very useful when you have many different solutions sharing packages and / or references you want to compare.
+It exports the references to a CSV file to be visualized in a HTML pivot table. It allows for simple analysis of all references and NuGet packages over different solutions which is very useful when you have many different solutions sharing packages and / or references you want to compare.
 
 # Usage
 
