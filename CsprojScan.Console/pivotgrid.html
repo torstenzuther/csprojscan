@@ -57,18 +57,15 @@
 
         $(function () {
             var listUnique = $.pivotUtilities.aggregatorTemplates.listUnique;
-            var numberFormat = $.pivotUtilities.numberFormat;
-            var listUniqueFn = function () { return listUnique(numberFormat)(["Version"]); }
 
             Papa.parse("sample.csv", {
                 download: true,
                 skipEmptyLines: true,
                 complete: function (parsed) {
                     $("#output").pivotUI(parsed.data, {
-                        rows: ["ReferenceType", "Name"],
-                        cols: ["ID"],
+                        rows: ["Csproj"],
+                        cols: ["ReferenceType", "Name"],
                         aggregators: {
-                            "Unique version numbers": listUniqueFn,
                             "Unique values": listUnique()
                         }
                     });

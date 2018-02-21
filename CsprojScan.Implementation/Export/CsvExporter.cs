@@ -6,17 +6,29 @@ using System.Linq;
 
 namespace CsprojScan.Implementation.Export
 {
+    /// <summary>
+    /// A CSV exporter
+    /// </summary>
     public class CsvExporter : IExporter
     {
         private readonly CsvExporterSettings settings;
         private readonly IExceptionHandler exceptionHandler;
 
+        /// <summary>
+        /// Creates a CSV exporter
+        /// </summary>
+        /// <param name="settings">the CSV exporter specific settings</param>
+        /// <param name="exceptionHandler">the exception handler to use when an exception occurs during export</param>
         public CsvExporter(CsvExporterSettings settings, IExceptionHandler exceptionHandler)
         {
             this.settings = settings;
             this.exceptionHandler = exceptionHandler;
         }
-
+         
+        /// <summary>
+        /// Exports results in a CSV file format
+        /// </summary>
+        /// <param name="results">the results to be exported</param>
         public void Export(IEnumerable<IResult> results)
         {
             try

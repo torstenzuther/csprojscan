@@ -4,14 +4,26 @@ using CsprojScan.Implementation.Exception;
 using CsprojScan.Implementation.Export;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 
 namespace CsprojScan.DependencyInjection
 {
+    /// <summary>
+    /// Service collection extensions for registering CsprojScan dependencies
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
 
+        /// <summary>
+        /// Registers CsprojScan dependencies to service collection
+        /// </summary>
+        /// <param name="serviceCollection">the service collection to use</param>
+        /// <param name="basePaths">all paths to look for csproj files</param>
+        /// <param name="exportFilename">the file to export the results to</param>
+        /// <param name="searchPattern">an optional search pattern for files (default is *.csproj)</param>
+        /// <returns></returns>
         public static IServiceCollection UseCsprojScan(this IServiceCollection serviceCollection,
-            string basePath, string exportFilename, string searchPattern = "*.csproj")
+            IEnumerable<string> basePaths, string exportFilename, string searchPattern = "*.csproj")
         {
             return serviceCollection
                 .AddTransient<IExceptionHandler, ExceptionHandler>()
@@ -19,12 +31,12 @@ namespace CsprojScan.DependencyInjection
                 .AddTransient(sp => new CsvExporterSettings {
                                     ColumnSeparator = ",",
                                     ErrorMessageColumn = "Error message",
-                                    NameColumn = "ID",
+                                    NameColumn = "Csproj",
                                     File = exportFilename,
                                     Newline = Environment.NewLine
                             })
                 .AddTransient(sp => new FileCrawlerSettings {
-                                    BasePath = basePath,
+                                    BasePaths = basePaths,
                                     SearchPattern = searchPattern
                                 })
                 .AddTransient<IExtractor, Extractor>()

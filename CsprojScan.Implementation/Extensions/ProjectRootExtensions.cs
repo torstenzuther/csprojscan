@@ -7,6 +7,9 @@ using CsprojScan.Implementation.Collect;
 
 namespace CsprojScan.Implementation.Extensions
 {
+    /// <summary>
+    /// Extension class for the Msbuild ProjectRoot class
+    /// </summary>
     public static class ProjectRootExtensions
     {
         private const string KeyName = "Name";
@@ -16,6 +19,12 @@ namespace CsprojScan.Implementation.Extensions
         private const string PackageRef = "PackageReference";
         private const string ProjectRef = "ProjectReference";
 
+        /// <summary>
+        /// Returns all results for a ProjectRoot instance
+        /// Results can be package references, project references or references (direct references)
+        /// </summary>
+        /// <param name="projectRoot">the ProjectRoot instance</param>
+        /// <returns>All results for a ProjectRoot instance</returns>
         public static IEnumerable<IResultRow> GetReferences(this ProjectRootElement projectRoot)
         {
             var result = new List<IResultRow>();

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace CsprojScan.Implementation.Collect
 {
     /// <summary>
@@ -6,9 +8,9 @@ namespace CsprojScan.Implementation.Collect
     public class FileCrawlerSettings
     {
         /// <summary>
-        /// The base path to start crawling
+        /// The base paths to start crawling
         /// </summary>
-        public string BasePath { get; set; }
+        public IEnumerable<string> BasePaths { get; set; }
 
         /// <summary>
         /// The search pattern to search for

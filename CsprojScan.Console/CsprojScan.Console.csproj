@@ -5,7 +5,10 @@
     <TargetFramework>net471</TargetFramework>
     <Authors>Torsten Zuther</Authors>
     <Company>CsprojScan.Console</Company>
-    <Description />
+    <Description>CsprojScan scans your folders for *.csproj files to analyse references and their version in one pivot grid.</Description>
+    <StartupObject>CsprojScan.Console.Program</StartupObject>
+    <PackageProjectUrl>https://bitbucket.org/buddelflink87/csprojscan</PackageProjectUrl>
+    <PackageTags>csproj, reference, package reference, project reference, analyze reference, package version, analyze csproj</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

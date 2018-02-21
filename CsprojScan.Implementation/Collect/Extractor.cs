@@ -5,15 +5,27 @@ using System.Collections.Generic;
 
 namespace CsprojScan.Implementation.Collect
 {
+    /// <summary>
+    /// Default implementation of IExtractor interface
+    /// </summary>
     public class Extractor : IExtractor
     {
         private readonly IExceptionHandler exceptionHandler;
 
+        /// <summary>
+        /// Creates a new extractor
+        /// </summary>
+        /// <param name="exceptionHandler">the exception handler to use when an exception occurs during extraction</param>
         public Extractor(IExceptionHandler exceptionHandler)
         {
             this.exceptionHandler = exceptionHandler;
         }
 
+        /// <summary>
+        /// Reads file as a csproj and returns result
+        /// </summary>
+        /// <param name="file">the csproj file</param>
+        /// <returns></returns>
         public IResult Extract(string file)
         {
             try

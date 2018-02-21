@@ -6,18 +6,33 @@ using CsprojScan.Contracts;
 
 namespace CsprojScan.Implementation.Collect
 {
+    /// <summary>
+    /// Default implementation of a file crawler
+    /// </summary>
     public class FileCrawler : IFileCrawler
     {
         private readonly FileCrawlerSettings settings;
 
+        /// <summary>
+        /// Creates a file crawler
+        /// </summary>
+        /// <param name="settings">the settings for the file crawler to use</param>
         public FileCrawler(FileCrawlerSettings settings)
         {
             this.settings = settings;
         }
 
+        /// <summary>
+        /// Returns all files found depending on the given settings
+        /// </summary>
+        /// <returns>All files (full paths and they are distinct)</returns>
         public IEnumerable<string> GetFiles()
         {
-            return GetFiles(settings.BasePath, settings.SearchPattern);
+            var files = settings.BasePaths
+                .Select(path => GetFiles(path, settings.SearchPattern))
+                .SelectMany(f => f)
+                .Distinct();
+            return files;
         }
 
         /// <summary>
