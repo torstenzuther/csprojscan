@@ -1,15 +1,10 @@
 ﻿namespace CsprojScan.Implementation.Export
 {
     /// <summary>
-    /// Settings for the CSV exporter
+    /// Settings for the default exporter
     /// </summary>
-    public class CsvExporterSettings
+    public class ExporterSettings
     {
-        /// <summary>
-        /// the file to export to
-        /// </summary>
-        public string File { get; set; }
-        
         /// <summary>
         /// the name of the column containing the name of the result
         /// </summary>
@@ -29,11 +24,6 @@
         /// the column separator
         /// </summary>
         public string ColumnSeparator { get; set; }
-
-        /// <summary>
-        /// Controls if pivotgrid should be also exported
-        /// </summary>
-        public bool ExportPivotGrid { get; set; }
 
     }
 }

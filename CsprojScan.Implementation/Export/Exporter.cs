@@ -8,26 +8,26 @@ using System.Linq;
 namespace CsprojScan.Implementation.Export
 {
     /// <summary>
-    /// A CSV exporter
+    /// The default exporter
     /// </summary>
-    public class CsvExporter : IExporter
+    public class Exporter : IExporter
     {
-        private readonly CsvExporterSettings settings;
+        private readonly ExporterSettings settings;
         private readonly IExceptionHandler exceptionHandler;
 
         /// <summary>
-        /// Creates a CSV exporter
+        /// Creates an exporter
         /// </summary>
-        /// <param name="settings">the CSV exporter specific settings</param>
+        /// <param name="settings">the exporter specific settings</param>
         /// <param name="exceptionHandler">the exception handler to use when an exception occurs during export</param>
-        public CsvExporter(CsvExporterSettings settings, IExceptionHandler exceptionHandler)
+        public Exporter(ExporterSettings settings, IExceptionHandler exceptionHandler)
         {
             this.settings = settings;
             this.exceptionHandler = exceptionHandler;
         }
          
         /// <summary>
-        /// Exports results in a CSV file format
+        /// Exports results in a CSV file format and pivotgrid html
         /// </summary>
         /// <param name="results">the results to be exported</param>
         public void Export(IEnumerable<IResult> results)
@@ -84,9 +84,12 @@ namespace CsprojScan.Implementation.Export
                     csv = String.Join(settings.Newline,
                         matrix.Select(rows => String.Join(settings.ColumnSeparator, rows)));
                 }
-                File.WriteAllText(settings.File, csv);
-                if (settings.ExportPivotGrid)
-                    WritePivotGrid(settings.File);
+                var now = DateTimeOffset.UtcNow.Ticks;
+                var directory = AppDomain.CurrentDomain.BaseDirectory;
+                var filenameCsv = "export_" + now + ".csv";
+                var filenamePivotgrid = directory + "pivotgrid_" + now + ".html";
+                File.WriteAllText(directory + filenameCsv, csv);
+                WritePivotGrid(filenamePivotgrid, filenameCsv);
             }
             catch (System.Exception e)
             {
@@ -95,15 +98,11 @@ namespace CsprojScan.Implementation.Export
 
         }
 
-        private void WritePivotGrid(string file)
+        private void WritePivotGrid(string filenamePivotgrid, string filenameCsv)
         {
-            var directory = Path.GetDirectoryName(Path.GetFullPath(file));
-            var filename = Path.GetFileName(file);
-            var pivotGridHtml = Pivotgrid.PivotgridHtml.Replace("$$$FILENAME$$$", filename);
-            var pivotGridFilename = $"{filename}{"_"}{DateTimeOffset.Now.UtcTicks}{".html"}";
-            var pivotGridFile = directory + Path.DirectorySeparatorChar + pivotGridFilename;
-            File.WriteAllText(pivotGridFile, pivotGridHtml);
-            Process.Start(Path.GetFullPath(pivotGridFile));
+            var pivotGridHtml = Pivotgrid.PivotgridHtml.Replace("$$$FILENAME$$$", filenameCsv);
+            File.WriteAllText(filenamePivotgrid, pivotGridHtml);
+            Process.Start(Path.GetFullPath(filenamePivotgrid));
         }
     }
 }

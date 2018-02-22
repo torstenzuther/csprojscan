@@ -1,8 +1,6 @@
 ﻿using CsprojScan.Contracts;
 using CsprojScan.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -15,7 +13,7 @@ namespace CsprojScan.Console
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2 || args.Any(s => string.IsNullOrEmpty(s)))
+            if (args.Length < 1 || args.Any(s => string.IsNullOrEmpty(s)))
             {
                 PrintUsage();
             }
@@ -23,9 +21,8 @@ namespace CsprojScan.Console
             {
                 System.Console.WriteLine("Starting...");
                 var searchPaths = args[0].Split(Path.PathSeparator);
-                var exportFile = args[1];
-                var serviceProvider = args.Length > 2 ? ScanMe.Now(searchPaths, exportFile, true, args[2])
-                    : ScanMe.Now(searchPaths, exportFile, true);
+                var serviceProvider = args.Length > 2 ? ScanMe.Now(searchPaths, args[1])
+                    : ScanMe.Now(searchPaths);
 
                 var results = serviceProvider.GetRequiredService<IResultCollector>().CollectResults();
                 serviceProvider.GetRequiredService<IExporter>().Export(results);
@@ -39,9 +36,8 @@ namespace CsprojScan.Console
 
         static void PrintUsage()
         {
-            var usage = new[] { "Usage: CsprojScan.Console.exe <search-paths> <export-file> [<search-pattern>]",
+            var usage = new[] { "Usage: CsprojScan.Console.exe <search-paths> [<search-pattern>]",
                 "* <search-paths> is the start search path. Multiple paths can be separated by " + Path.PathSeparator + " (no whitespaces allowed)",
-                "* <export-file> is the file name to export to (will be overwritten)",
                 "* optional <search-pattern> (defaults to *.csproj)"};
 
             foreach (var line in usage)

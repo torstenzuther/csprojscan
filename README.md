@@ -5,16 +5,17 @@ It exports the references to a CSV file to be visualized in a HTML pivot table. 
 
 # Usage
 
-`CsprojScan.Console.exe <search-paths> <export-file> [<search-pattern>]`
+`CsprojScan.Console.exe <search-paths> [<search-pattern>]`
 
 **<search-paths>** is the start search path. Multiple paths can be separated by ; (no whitespaces allowed)
 
-**<export-file>** is the file name to export to (will be overwritten)
-
 optional **<search-pattern>** (defaults to *.csproj)}
 
-CsprojScan then scans all given search paths by using the given search pattern and exports the results to the given export file in CSV format. 
+CsprojScan then scans all given search paths by using the given search pattern and exports the results to a file in CSV format. 
 It also generates a html file using the pivottable.js library from https://pivottable.js.org/ and opens it. 
-The pivot table html is configured to load the generated CSV file. The name of the pivot html is auto generated and follows the pattern **<CSV-filename>_<Ticks>.html**
+The pivot table html is configured to load the generated CSV file. 
+The name of the pivot table HTML file is auto generated and follows the pattern **<pivotgrid>_<Ticks>.html**
+The name of the CSV file is auto generated and follows the pattern **<export>_<Ticks>.csv**
+The exported files are created in the application directory.
 
 ![Pivot table](csprojscan.png)
